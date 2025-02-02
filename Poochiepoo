@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Happy 6th Monthsary, My Love!</title>
+    <style>
+        body {
+            background-color: #fff0f6;
+            color: #d6336c;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            text-align: center;
+            padding: 50px;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 50px;
+        }
+        p {
+            font-size: 20px;
+        }
+        button {
+            padding: 15px 25px;
+            font-size: 20px;
+            background-color: #ff66a3;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #d6336c;
+        }
+        #noBtn {
+            position: absolute;
+        }
+        #cryingFace {
+            display: none;
+            font-size: 60px;
+            margin-top: 20px;
+        }
+        #heartfeltMessage {
+            display: none;
+            background-color: #ffe6f2;
+            padding: 20px;
+            border: 3px dashed #ff3385;
+            border-radius: 15px;
+            margin-top: 20px;
+            font-size: 22px;
+            white-space: pre-wrap;
+        }
+        #countdown {
+            font-size: 30px;
+            color: #cc0066;
+        }
+        .heart {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            clip-path: polygon(50% 0%, 61% 14%, 75% 14%, 85% 25%, 85% 40%, 50% 100%, 15% 40%, 15% 25%, 25% 14%, 39% 14%);
+            animation: float 5s infinite ease-in-out;
+        }
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-800px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Happy 6th Monthsary, My Love! 🎉❤️</h1>
+    <p id="unlockMessage">Your surprise will unlock in:</p>
+    <div id="countdown"></div>
+
+    <div id="content" style="display:none;">
+        <p>Do you love me as much as I love you? (Choose wisely!) 😏</p>
+        <button onclick="yesClicked()">YES, I DO! 💕</button>
+        <button id="noBtn" onmouseover="moveButton()" onclick="noClicked()">NO... 😢</button>
+        <div id="cryingFace">😭😭😭</div>
+        <div id="heartfeltMessage"></div>
+    </div>
+
+    <!-- Background music -->
+    <audio id="backgroundMusic" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop></audio>
+
+    <script>
+        // Countdown Timer
+        const unlockDate = new Date("February 7, 2025 00:00:00").getTime();
+        const countdownEl = document.getElementById("countdown");
+        const content = document.getElementById("content");
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = unlockDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                countdownEl.style.display = "none";
+                document.getElementById("unlockMessage").innerText = "🎉 The surprise is here! 🎉";
+                content.style.display = "block";
+            }
+        }, 1000);
+
+        // Floating Hearts Animation
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 300);
+
+        // Yes Button Function
+        function yesClicked() {
+            document.getElementById('backgroundMusic').play();
+            const message = `
+Happy 6th Monthsary to the most amazing person I’ve ever known! ❤️ 
+
+As I sit here reflecting on these past six months, I can’t help but feel so grateful to God for bringing you into my life. You are my greatest blessing, and I thank Him every day for the gift of your love.
+
+Being in a long-distance relationship isn’t easy, but loving you makes every challenge so worth it. 🌏💌 Your kindness, patience, and understanding fill my heart with so much joy, even from thousands of miles away. You’ve shown me what it truly means to love and to be loved. Every call, every message, and every moment we share reminds me how lucky I am to have you.
+
+I want you to know how much I cherish you. 💖 You are the reason my days are brighter, my heart is fuller, and my faith in our future grows stronger. I’m so thankful for all the ways you make me feel loved and for the beautiful connection we share. I carry you with me everywhere I go, in my thoughts and in my prayers. 🙏
+
+I also want to remind you that God is always with us, guiding us and strengthening our love. 🌟 I believe that His plans for us are beautiful, and I trust Him to keep us connected, no matter the distance. I pray that He continues to bless you, protect you, and fill your heart with peace and joy. You are never alone, my love—He is with you, and so am I.
+
+I love you so much, more than words can ever express. 🥰 You are my inspiration, my happiness, and my home, no matter how far apart we may be. Someday, this distance will be behind us, and I’ll finally be able to hold you in my arms like I’ve always dreamed. Until then, I’ll keep loving you with everything I have, thanking God for you, and counting down the days until we’re together.
+
+Happy 6th Monthsary, my love! 🥳💖 Here’s to many more months and years of love, faith, and happiness. Always remember, I’m yours—today, tomorrow, and forever. ❤️
+            `;
+            document.getElementById('heartfeltMessage').innerText = message;
+            document.getElementById('heartfeltMessage').style.display = 'block';
+            alert("💖 Surprise! You're the best thing that’s ever happened to me! 💖");
+        }
+
+        // No Button Escaping
+        function moveButton() {
+            const button = document.getElementById('noBtn');
+            button.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+            button.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+        }
+
+        // No Button Click Response
+        function noClicked() {
+            document.getElementById('cryingFace').style.display = 'block';
+            alert("😭 OH NO! My heart just broke into tiny little pieces!");
+        }
+    </script>
+
+</body>
+</html>
